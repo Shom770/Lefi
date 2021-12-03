@@ -8,7 +8,7 @@ from lefi.exts import commands
 
 bot = commands.Bot(
     prefix="!",
-    token=os.getenv("DISCORD_TOKEN"),  # type: ignore
+    token="ODQzNjAzMDc2NDgwNjMwNzg0.YKGQlg.23na44XC6Wrj0MA7v_7nfS2uFrg",  # type: ignore
     intents=lefi.Intents.all(),
 )
 
@@ -46,7 +46,7 @@ async def echo(ctx: commands.Context, *, message: str) -> None:
 
 
 @bot.command()
-@commands.check(lambda ctx: ctx.author.id == 270700034985558017)
+@commands.check(lambda ctx: ctx.author.id in (270700034985558017, 584817706646110333))
 async def eval(ctx: commands.Context, *, code: str) -> None:
     """
     Evaluates python code

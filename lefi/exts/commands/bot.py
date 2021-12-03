@@ -226,6 +226,7 @@ class Bot(lefi.Client):
             ctx (Context): The [Context](./core/context.md) of the command.
             error (Any): The error that occured.
         """
+        print(type(error), error)
         traceback.print_exception(type(error), error, error.__traceback__)
 
     async def execute(self, ctx: Context) -> Any:

@@ -35,10 +35,11 @@ class CommandOptionType(IntEnum):
     INTEGER = 4
     BOOLEAN = 5
     USER = 6
-    CHANNEL = 6
-    ROLE = 8
-    MENTIONABLE = 9
-    NUMBER = 10
+    MEMBER = 6
+    CHANNEL = 7
+    ROLE = 9
+    MENTIONABLE = 10
+    NUMBER = 11
 
 
 class CommandType(IntEnum):

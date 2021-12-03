@@ -275,7 +275,7 @@ class State:
                 arguments = []
 
                 if options := data["data"].get("options"):
-                    arguments.extend(await command.parser.create_arguments(options))
+                    arguments.extend(await command.parser.create_arguments(interaction, options))
 
                 await command.callback(interaction, *arguments)
 
