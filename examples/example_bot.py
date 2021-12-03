@@ -8,7 +8,7 @@ from lefi.exts import commands
 
 bot = commands.Bot(
     prefix="!",
-    token="ODQzNjAzMDc2NDgwNjMwNzg0.YKGQlg.23na44XC6Wrj0MA7v_7nfS2uFrg",  # type: ignore
+    token=os.getenv("DISCORD_TOKEN"),  # type: ignore
     intents=lefi.Intents.all(),
 )
 
