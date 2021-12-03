@@ -290,6 +290,48 @@ AllowedMentions
 .. autoclass:: AllowedMentions
     :members:
 
+Message
+~~~~~~~
+.. autoclass:: Message
+    :members:
+
+DeletedMessage
+~~~~~~~~~~~~~~
+.. autoclass:: DeletedMessage
+    :members:
+
+Overwrite
+~~~~~~~~~
+.. autoclass:: Overwrite
+    :members:
+
+Role
+~~~~
+.. autoclass:: Role
+    :members:
+
+GuildTemplate
+~~~~~~~~~~~~~
+.. autoclass:: GuildTemplate
+    :members:
+
+Thread
+~~~~~~
+.. autoclass:: Thread
+    :members:
+
+ThreadMember
+~~~~~~~~~~~~
+.. autoclass:: ThreadMember
+    :members:
+
+User
+~~~~
+.. autoclass:: User
+    :show-inheritance:
+    :inherited-members:
+    :members:
+
 Exceptions
 ----------
 .. currentmodule:: lefi.errors

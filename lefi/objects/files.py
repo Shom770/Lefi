@@ -22,17 +22,19 @@ class File:
 
     filename: Optional[:class:`str`]
         The name of the file
+
+    fp: Union[:class:`io.BufferedReader`, :class:`typing.BinaryIO`]
+        The file's path
     """
 
-    def __init__(
-        self, fp: Union[str, PathLike[str], BinaryIO], *, filename: Optional[str] = None
-    ) -> None:
+    def __init__(self, fp: Union[str, PathLike[str], BinaryIO], *, filename: Optional[str] = None) -> None:
         if isinstance(fp, (str, PathLike)):
             self.source = open(fp, "rb")
         else:
             self.source = fp
 
         self.filename = filename or getattr(self.source, "name", None)
+        self.fp = fp
 
     def read(self, size: Optional[int]) -> bytes:
         """Reads the file.
