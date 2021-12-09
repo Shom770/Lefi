@@ -6,6 +6,7 @@ import textwrap
 import lefi
 from lefi.exts import commands
 
+
 bot = commands.Bot(
     prefix="!",
     token=os.getenv("DISCORD_TOKEN"),  # type: ignore

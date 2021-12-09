@@ -241,7 +241,7 @@ class Interaction:
         await self._state.http.create_interaction_response(
             self.id,
             self.token,
-            type=int(self.type),
+            type=int(InteractionResponse.DEFER_MESSAGE),
         )
         self._responded = True
 
