@@ -36,7 +36,7 @@ class Converter(Generic[T_co], metaclass=ConverterMeta):
 
     @staticmethod
     def convert(data: Dict, interaction: "Interaction") -> T_co:  # type: ignore
-        raise NotImplemented
+        raise NotImplementedError
 
 
 class StringConverter(Converter["str"]):
