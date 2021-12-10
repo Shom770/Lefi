@@ -129,7 +129,7 @@ class UserConverter(Converter["User"]):  # type: ignore
         if user := interaction.client.get_user(user_id):
             return user
 
-        data = await interaction.client.http.get_user(user_id)
+        data = await interaction.client.fetch_user(user_id)
         return interaction.client._state.add_user(data)
 
 
