@@ -1,5 +1,6 @@
 __pycache__/
 poetry.lock
+test.py
 .mypy_cache/
 .pytest_cache/
 .docs/_build
