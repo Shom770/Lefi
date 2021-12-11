@@ -9,7 +9,7 @@ from lefi.exts import commands
 
 bot = commands.Bot(
     prefix="!",
-    token="ODQzNjAzMDc2NDgwNjMwNzg0.YKGQlg.KEUVVlGCYdmwhcm0aGRiN3ToB20",  # type: ignore
+    token=os.getenv("DISCORD_TOKEN"),  # type: ignore
     intents=lefi.Intents.all(),
 )
 
