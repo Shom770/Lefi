@@ -2,40 +2,50 @@ from __future__ import annotations
 
 import inspect
 
-from typing import TYPE_CHECKING, List, Dict, Any, Tuple
+from typing import TYPE_CHECKING, List, Dict, Any, Tuple, Union
 
-from .converters import _CONVERTERS, Converter
+from .converters import _CONVERTERS
 
 from ..enums import CommandOptionType
 
 if TYPE_CHECKING:
     from lefi import Interaction
     from .command import AppCommand
+    from ..member import Member
+    from ..user import User
+    from ..channel import Channel
+    from ..role import Role
 
 
 class ArgumentParser:
     """
     A class representing an ArgumentParser.
 
-    Attributes:
-        command (Optional[Command]): The [Command](./command.md) object.
+    Attributes
+    ---------
+    command: :class:`Optional[Command]`
+        The [Command](./command.md) object.
     """
 
     def __init__(self, command: AppCommand) -> None:
         """
         Initialize a StringParser.
 
-        Parameters:
-            command (AppCommand): The slash command.
+        Parameters
+        ---------
+        command: :class:`AppCommand`
+            The slash command.
         """
         self.command = command
 
-    async def create_arguments(self, interaction: Interaction, data: List[Dict]) -> List:
+    async def create_arguments(
+        self, interaction: Interaction, data: List[Dict]
+    ) -> list[Union[str, int, bool, Member, User, Channel, Role]]:
         """
         Converts each argument passed in into its respective type.
 
         Parameters
-        ----------
+        ---------
         interaction: :class:`Interaction`
             The Interaction instance from the interaction with the slash command.
 
@@ -43,8 +53,8 @@ class ArgumentParser:
             A list containing information about each argument the user entered, with each argument being a dictionary.
 
         Returns
-        ----------
-        :class:`list`
+        ---------
+        :class:`list[Union[str, int, bool, Member, User, Channel, Role]]`
             The list containing the converted arguments.
         """
         arguments: List = []
@@ -71,8 +81,8 @@ class ArgumentParser:
         Parses each argument into their value and their type (represented by CommandOptionType)
 
         Returns
-        ----------
-        :class:`list`
+        ---------
+        :class:`list[tuple[str, CommandOptionTypes]]`
             A list containing a tuple of the value of the argument along with its type.
         """
         arguments: List = []
@@ -93,16 +103,16 @@ class ArgumentParser:
         Converts the argument into its type (represented by CommandOptionType)
 
         Parameters
-        ----------
+        ---------
         parameter: :class:`inspect.Parameter`
             A Parameter instance representing a parameter from the callback of the command.
 
         data: :class:`str`
             A string containing the value passed in for the argument.
 
-        Parameters
-        ----------
-        :class:`tuple`
+        Returns
+        ---------
+        :class:`tuple[str, CommandOptionType]`
             A tuple containing the value passed into the argument and its type.
         """
 
