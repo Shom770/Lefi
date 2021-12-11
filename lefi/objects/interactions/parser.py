@@ -4,7 +4,7 @@ import inspect
 
 from typing import TYPE_CHECKING, List, Dict, Any, Tuple
 
-from .converters import _CONVERTERS
+from .converters import _CONVERTERS, Converter
 
 from ..enums import CommandOptionType
 
@@ -58,7 +58,7 @@ class ArgumentParser:
             # Add a `client` attribute for some of the converters to use
             interaction.client = self.command.client  # type: ignore
 
-            if inspect.iscoroutinefunction(converter):
+            if inspect.iscoroutinefunction(converter.convert):  # type: ignore
                 arguments.append(await converter.convert(input, interaction))  # type: ignore
 
             elif callable(converter):

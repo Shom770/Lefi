@@ -6,12 +6,13 @@ import aiohttp
 import logging
 import json
 
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, TYPE_CHECKING, Union
 
 from .errors import BadRequest, Forbidden, NotFound, Unauthorized
 from .ratelimiter import Ratelimiter
 from .utils import bytes_to_data_uri, update_payload
 from .objects import File
+
 
 __all__ = (
     "HTTPClient",
@@ -2870,7 +2871,7 @@ class HTTPClient:
         List[:class:`dict`]
             A list of dicts representing a role.
         """
-        return await self.request("GET", Route(f"/guilds/{guild_id}/roles"), guild_id=guild_id)
+        return await self.request("GET", Route(f"/guilds/{guild_id}/roles", guild_id=guild_id))
 
     async def create_guild_role(
         self,

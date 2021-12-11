@@ -29,6 +29,7 @@ from .threads import Thread
 from .attachments import CDNAsset
 from .flags import Permissions, SystemChannelFlags
 
+
 if TYPE_CHECKING:
     from ..state import State
     from .channel import CategoryChannel, Channel, TextChannel, VoiceChannel

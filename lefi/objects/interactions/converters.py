@@ -160,7 +160,7 @@ class MemberConverter(Converter["Member"]):  # type: ignore
 
 class ChannelConverter(Converter["Channel"]):  # type: ignore
     @staticmethod
-    def convert(data: Dict, interaction: "Interaction") -> "Channel":  # type: ignore
+    async def convert(data: Dict, interaction: "Interaction") -> "Channel":  # type: ignore
         """
         Converts the channel ID passed in into a Channel.
 
@@ -180,12 +180,12 @@ class ChannelConverter(Converter["Channel"]):  # type: ignore
         channel_id: int = int(data["value"])
         guild = interaction.guild
 
-        return guild.get_channel(channel_id)
+        return await guild.fetch_channel(channel_id)
 
 
 class RoleConverter(Converter["Role"]):  # type: ignore
     @staticmethod
-    def convert(data: Dict, interaction: "Interaction") -> "Role":  # type: ignore
+    async def convert(data: Dict, interaction: "Interaction") -> "Role":  # type: ignore
         """
         Converts the role ID passed in into a Role.
 
@@ -204,6 +204,11 @@ class RoleConverter(Converter["Role"]):  # type: ignore
         """
         role_id: int = int(data["value"])
         guild = interaction.guild
+
+        # Make sure that all the roles are cached
+        interaction.client._state.create_guild_roles(
+            guild=guild, data=(await interaction.client._state.http.get_guild_roles(guild_id=guild.id))
+        )
 
         return guild.get_role(role_id)
 
