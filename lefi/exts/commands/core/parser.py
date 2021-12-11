@@ -92,14 +92,13 @@ class StringParser:
 
         if self.command is not None:
             signature = inspect.signature(self.command.callback)
+            parameters = signature.parameters.copy()  # type: ignore
+            parameters.popitem(last=True)
 
-            for index, (argument, parameter) in enumerate(signature.parameters.items()):
-                if index == 0:
-                    continue
+            if self.command.parent is not None:
+                parameters.popitem(last=True)
 
-                if index == 1 and self.command.parent is not None:
-                    continue
-
+            for index, (argument, parameter) in enumerate(parameters.items()):
                 if parameter.kind is parameter.POSITIONAL_OR_KEYWORD:
                     arguments.append(await self.convert(parameter, self.arguments[index - 1]))
 
@@ -109,6 +108,9 @@ class StringParser:
         return keyword_arguments, arguments
 
     async def convert(self, parameter: inspect.Parameter, data: str) -> Any:
+        if parameter.annotation is parameter.empty:
+            return str(data)
+
         name = parameter.annotation.removeprefix("lefi.")
         if converter := _CONVERTERS.get(name):
             return await converter.convert(self.context, data)
