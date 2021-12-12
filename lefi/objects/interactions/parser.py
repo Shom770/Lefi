@@ -60,7 +60,7 @@ class ArgumentParser:
         arguments: List = []
         signature = inspect.signature(self.command.callback)
 
-        for index, input in enumerate(start=1, iterable=data):
+        for index, argument in enumerate(start=1, iterable=data):
             parameter_name = list(signature.parameters.keys())[index]
 
             converter = _CONVERTERS.get(signature.parameters[parameter_name].annotation.removeprefix("lefi."))
@@ -69,10 +69,10 @@ class ArgumentParser:
             interaction.client = self.command.client  # type: ignore
 
             if inspect.iscoroutinefunction(converter.convert):  # type: ignore
-                arguments.append(await converter.convert(input, interaction))  # type: ignore
+                arguments.append(await converter.convert(argument, interaction))  # type: ignore
 
             elif callable(converter):
-                arguments.append(converter.convert(input, interaction))
+                arguments.append(converter.convert(argument, interaction))
 
         return arguments
 
