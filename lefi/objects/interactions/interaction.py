@@ -10,6 +10,7 @@ from ..member import Member
 from ..enums import InteractionResponse, InteractionType
 
 if TYPE_CHECKING:
+    from lefi.client import Client
     from ..channel import Channel, DMChannel
     from ..guild import Guild
     from ..message import Message
@@ -25,6 +26,8 @@ class Interaction:
     """
 
     def __init__(self, state: State, data: Dict, type: InteractionType) -> None:
+        self.client: Client
+
         self._type = type
 
         self._state = state

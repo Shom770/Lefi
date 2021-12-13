@@ -18,34 +18,29 @@ if TYPE_CHECKING:
 
 
 class ArgumentParser:
-    """
-    A class representing an ArgumentParser.
+    """A class representing an ArgumentParser.
+
+    Parameters
+    ----------
+    command: :class:`AppCommand`
+        The slash command.
 
     Attributes
-    ---------
-    command: :class:`Optional[Command]`
-        The [Command](./command.md) object.
+    ----------
+    command: :class:`AppCommand`
+        The AppCommand object.
     """
 
     def __init__(self, command: AppCommand) -> None:
-        """
-        Initialize a StringParser.
-
-        Parameters
-        ---------
-        command: :class:`AppCommand`
-            The slash command.
-        """
         self.command = command
 
     async def create_arguments(
         self, interaction: Interaction, data: List[Dict]
     ) -> list[Union[str, int, bool, Member, User, Channel, Role]]:
-        """
-        Converts each argument passed in into its respective type.
+        """Converts each argument passed in into its respective type.
 
         Parameters
-        ---------
+        ----------
         interaction: :class:`Interaction`
             The Interaction instance from the interaction with the slash command.
 
@@ -53,8 +48,8 @@ class ArgumentParser:
             A list containing information about each argument the user entered, with each argument being a dictionary.
 
         Returns
-        ---------
-        :class:`list[Union[str, int, bool, Member, User, Channel, Role]]`
+        -------
+        List
             The list containing the converted arguments.
         """
         arguments: List = []
@@ -77,12 +72,11 @@ class ArgumentParser:
         return arguments
 
     async def parse_arguments(self) -> List:
-        """
-        Parses each argument into their value and their type (represented by CommandOptionType)
+        """Parses each argument into their value and their type (represented by CommandOptionType)
 
         Returns
-        ---------
-        :class:`list[tuple[str, CommandOptionTypes]]`
+        -------
+        :class:`List[Tuple[:class:`str`, :class:`CommandOptionType`]]`
             A list containing a tuple of the value of the argument along with its type.
         """
         arguments: List = []
@@ -99,11 +93,10 @@ class ArgumentParser:
         return arguments
 
     async def convert(self, parameter: inspect.Parameter, data: str) -> Tuple[str, Any]:
-        """
-        Converts the argument into its type (represented by CommandOptionType)
+        """Converts the argument into its type (represented by CommandOptionType)
 
         Parameters
-        ---------
+        ----------
         parameter: :class:`inspect.Parameter`
             A Parameter instance representing a parameter from the callback of the command.
 
@@ -111,8 +104,8 @@ class ArgumentParser:
             A string containing the value passed in for the argument.
 
         Returns
-        ---------
-        :class:`tuple[str, CommandOptionType]`
+        -------
+        :class:`Tuple[:class:`str`, :class:`CommandOptionType`]`
             A tuple containing the value passed into the argument and its type.
         """
 
