@@ -76,7 +76,7 @@ class ArgumentParser:
 
         Returns
         -------
-        :class:`List[Tuple[:class:`str`, :class:`CommandOptionType`]]`
+        List[Tuple[:class:`str`, :class:`CommandOptionType`]]
             A list containing a tuple of the value of the argument along with its type.
         """
         arguments: List = []
@@ -105,7 +105,7 @@ class ArgumentParser:
 
         Returns
         -------
-        :class:`Tuple[:class:`str`, :class:`CommandOptionType`]`
+        Tuple[:class:`str`, :class:`CommandOptionType`]
             A tuple containing the value passed into the argument and its type.
         """
 

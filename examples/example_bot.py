@@ -47,7 +47,7 @@ async def echo(ctx: commands.Context, *, message: str) -> None:
 
 
 @bot.command()
-@commands.check(lambda ctx: ctx.author.id == 584817706646110333)
+@commands.check(lambda ctx: ctx.author.id == 270700034985558017)
 async def eval(ctx: commands.Context, *, code: str) -> None:
     """
     Evaluates python code

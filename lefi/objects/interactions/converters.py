@@ -55,7 +55,7 @@ class StringConverter(Converter["str"]):
 
         Returns
         -------
-        str
+        :class:`str`
             The string passed in
         """
         return data["value"]
@@ -76,7 +76,7 @@ class IntegerConverter(Converter["int"]):
 
         Returns
         -------
-        int
+        :class:`int`
             The string passed in, converted into an integer
         """
         return int(data["value"])
@@ -97,7 +97,7 @@ class BooleanConverter(Converter["bool"]):
 
         Returns
         -------
-        bool
+        :class:`bool`
             The string passed in, converted into a boolean.
         """
         return bool(data["value"])
@@ -118,7 +118,7 @@ class UserConverter(Converter["User"]):  # type: ignore
 
         Returns
         -------
-        User
+        :class:`User`
             The User instance from the ID given.
         """
         user_id: int = int(data["value"])
@@ -149,7 +149,7 @@ class MemberConverter(Converter["Member"]):  # type: ignore
 
         Returns
         -------
-        Member
+        :class:`Member`
             The Member instance from the ID given.
         """
         member_id: int = int(data["value"])
@@ -181,7 +181,7 @@ class ChannelConverter(Converter["Channel"]):  # type: ignore
 
         Returns
         -------
-        Channel
+        :class:`Channel`
             The Channel instance from the ID given.
         """
         channel_id: int = int(data["value"])
@@ -213,7 +213,7 @@ class RoleConverter(Converter["Role"]):  # type: ignore
 
         Returns
         -------
-        Role
+        :class:`Role`
             The Role instance from the ID given.
         """
         role_id: int = int(data["value"])
